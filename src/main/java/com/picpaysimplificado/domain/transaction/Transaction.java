@@ -1,6 +1,7 @@
 package com.picpaysimplificado.domain.transaction;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import com.picpaysimplificado.domain.user.User;
 
@@ -35,6 +36,6 @@ public class Transaction {
 	@ManyToOne
 	@JoinColumn(name="receiver_id")
 	private User receiver;
-
+	private LocalDateTime timestamp;
 
 }
