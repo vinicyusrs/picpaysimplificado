@@ -35,4 +35,6 @@ public class User {
 	private BigDecimal balance;
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
+	
+
 }
