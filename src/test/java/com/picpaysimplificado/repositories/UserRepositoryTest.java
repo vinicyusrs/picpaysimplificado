@@ -1,4 +1,4 @@
-package com.picpaysimplificado;
+package com.picpaysimplificado.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,14 +19,11 @@ import com.picpaysimplificado.repositories.UserRepository;
 
 import jakarta.persistence.EntityManager;
 
-@SpringBootTest
-class PicpaysimplificadoApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-	
-	
+@DataJpaTest
+@ActiveProfiles("test")
+class UserRepositoryTest{
+
 	@Autowired
 	UserRepository userRepository;
 	
@@ -46,11 +43,23 @@ class PicpaysimplificadoApplicationTests {
 		
 	}
 	
+	@Test
+	@DisplayName("Should get User successfully from DB")
+	void findUserByDocumentCase2failure() {
+		String document = "99999558555";
+	
+		Optional<User> result = this.userRepository.findUserByDocument(document);
+		
+		assertThat(result.isEmpty()).isTrue();
+		
+	}
+	
+	
 	private User createUser(UserDTO data) {
 		User newUser = new User(data);
 		this.entityManager.persist(newUser);
 		
 		return newUser;
 	}
-
+	
 }
